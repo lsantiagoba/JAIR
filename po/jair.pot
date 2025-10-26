@@ -1,0 +1,158 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: jair\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-26 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# Application title
+msgid "JAIR - Image resizer"
+msgstr ""
+
+# Main interface
+msgid "Image Resizer"
+msgstr ""
+
+msgid "Resize images for Android, iOS, Web, and Social Media"
+msgstr ""
+
+msgid "Select Platform"
+msgstr ""
+
+msgid "Platform"
+msgstr ""
+
+msgid "Choose the target platform"
+msgstr ""
+
+msgid "Select Format Preset"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Choose which format sizes to generate"
+msgstr ""
+
+msgid "Custom Size"
+msgstr ""
+
+msgid "Enter width and height in pixels"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Custom width in pixels"
+msgstr ""
+
+msgid "e.g., 1920"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Custom height in pixels"
+msgstr ""
+
+msgid "e.g., 1080"
+msgstr ""
+
+msgid "Add Images"
+msgstr ""
+
+msgid "Clear All"
+msgstr ""
+
+msgid "Output Options"
+msgstr ""
+
+msgid "Output Format"
+msgstr ""
+
+msgid "PNG (lossless) or JPEG (smaller size)"
+msgstr ""
+
+msgid "Resize Images"
+msgstr ""
+
+# Menu items
+msgid "_Preferences"
+msgstr ""
+
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
+msgid "_About JAIR"
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+# Preferences window
+msgid "Preferences"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Choose the interface language"
+msgstr ""
+
+msgid "Interface Language"
+msgstr ""
+
+msgid "Select the language for the user interface"
+msgstr ""
+
+msgid "System Default"
+msgstr ""
+
+msgid "Language will change after restarting the application"
+msgstr ""
+
+# Platform options
+msgid "Android"
+msgstr ""
+
+msgid "iOS / Apple"
+msgstr ""
+
+msgid "Web & Social Media"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+# Format options
+msgid "PNG"
+msgstr ""
+
+msgid "JPEG"
+msgstr ""
+
+# Desktop file
+msgid "JAIR"
+msgstr ""
+
+# Metainfo file  
+msgid "Image Resizer for Multiple Platforms"
+msgstr ""
+
+msgid "A powerful image resizer for Android, iOS, Web, and Social Media. Resize images with smart presets or custom dimensions in just a few clicks."
+msgstr ""

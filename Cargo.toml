@@ -1,0 +1,17 @@
+[package]
+name = "jair"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+gettext-rs = { version = "0.7", features = ["gettext-system"] }
+gtk = { version = "0.7", package = "gtk4" }
+image = "0.24"
+rayon ="1.7"
+anyhow ="1.0"
+async-channel = "2.0"
+
+[dependencies.adw]
+package = "libadwaita"
+version = "0.5"
+features = ["v1_4"]

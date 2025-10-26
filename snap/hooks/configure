@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+# Actualizar caché de iconos si es necesario
+if [ -d "$SNAP/share/icons/hicolor" ]; then
+    gtk-update-icon-cache -f -t "$SNAP/share/icons/hicolor" 2>/dev/null || true
+fi

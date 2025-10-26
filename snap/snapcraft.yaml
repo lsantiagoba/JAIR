@@ -1,0 +1,134 @@
+name: jair
+base: core24
+version: '1.0.0'
+title: JAIR - Just Another Image Resizer
+summary: Image Resizer for Android, iOS, Web, and Social Media
+description: |
+  JAIR (Just Another Image Resizer) is a powerful and intuitive GTK4/Libadwaita
+  application for resizing images. Perfect for developers and designers who need
+  to quickly resize images for multiple platforms.
+
+  Features:
+  * Smart presets for Android, iOS, Web, and Social Media
+  * Batch processing support
+  * Custom dimensions
+  * PNG and JPEG output formats
+  * Modern GNOME/GTK4 interface
+  * Multi-language support (English and Spanish)
+
+license: MIT
+contact: https://github.com/lsantiagoba/jair
+icon: snap/gui/icon.svg
+
+grade: stable
+confinement: strict
+
+platforms:
+  amd64:
+  arm64:
+
+apps:
+  jair:
+    command: usr/bin/jair
+    extensions: [gnome]
+    plugs:
+      - home
+      - desktop
+      - desktop-legacy
+      - wayland
+      - x11
+      - opengl
+      - gsettings
+      - removable-media
+      - mount-observe
+    common-id: codes.lsb.jair
+    desktop: usr/share/applications/codes.lsb.jair.desktop
+    environment:
+      GSETTINGS_SCHEMA_DIR: $SNAP/share/glib-2.0/schemas
+      XDG_DATA_DIRS: $SNAP/usr/share:$XDG_DATA_DIRS
+      LOCPATH: $SNAP/usr/lib/locale
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
+
+slots:
+  jair-dbus:
+    interface: dbus
+    bus: session
+    name: codes.lsb.jair
+
+parts:
+  jair:
+    plugin: dump
+    source: .
+    source-type: local
+    stage-packages:
+      - libgtk-4-1
+      - libadwaita-1-0
+      - libglib2.0-0
+      - libgdk-pixbuf-2.0-0
+      - libpango-1.0-0
+      - libcairo2
+      - libjpeg-turbo8
+      - libpng16-16
+      - libwebp7
+      - locales
+    override-build: |
+      # Get the name of the .deb file
+      ARCH=$(dpkg --print-architecture)
+      DEB_FILE="${CRAFT_PROJECT_DIR}/jair_1.0.0_${ARCH}.deb"
+
+      # Verify that the .deb file exists
+      if [ ! -f "$DEB_FILE" ]; then
+        echo "Error: .deb file not found at $DEB_FILE"
+        echo "Please run ./BUILD_DEB.sh first"
+        exit 1
+      fi
+
+      echo "📦 Extracting .deb package..."
+
+      # Extract the .deb package to the installation directory
+      dpkg-deb -x "$DEB_FILE" "$CRAFT_PART_INSTALL"
+
+      craftctl default
+
+    override-prime: |
+      craftctl default
+
+      # Compile GSettings schemas
+      if [ -d usr/share/glib-2.0/schemas ]; then
+        glib-compile-schemas usr/share/glib-2.0/schemas
+      fi
+
+      # Update icon cache
+      if [ -d usr/share/icons/hicolor ]; then
+        gtk-update-icon-cache -f -t usr/share/icons/hicolor 2>/dev/null || true
+      fi
+
+      # Generate locales
+      if [ -x usr/sbin/locale-gen ]; then
+        echo "en_US.UTF-8 UTF-8" > etc/locale.gen
+        echo "es_ES.UTF-8 UTF-8" >> etc/locale.gen
+        usr/sbin/locale-gen --no-archive || true
+      fi
+
+layout:
+  /usr/share/jair:
+    bind: $SNAP/usr/share/jair
+
+plugs:
+  gnome-46-2404:
+    interface: content
+    target: $SNAP/gnome-platform
+    default-provider: gnome-46-2404
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/data-dir/themes
+    default-provider: gtk-common-themes
+  icon-themes:
+    interface: content
+    target: $SNAP/data-dir/icons
+    default-provider: gtk-common-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/data-dir/sounds
+    default-provider: gtk-common-themes

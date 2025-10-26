@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="Adw" version="1.0"/>
+  <template class="JairWindow" parent="AdwApplicationWindow">
+    <property name="title" translatable="yes">JAIR - Image resizer</property>
+    <property name="default-width">800</property>
+    <property name="default-height">700</property>
+    <property name="content">
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar" id="header_bar">
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="primary">True</property>
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="tooltip-text" translatable="yes">Menu</property>
+                <property name="menu-model">primary_menu</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <property name="content">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">12</property>
+            <property name="margin-top">24</property>
+            <property name="margin-bottom">24</property>
+            <property name="margin-start">24</property>
+            <property name="margin-end">24</property>
+
+            <!-- Header -->
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Image Resizer</property>
+                <property name="wrap">True</property>
+                <style>
+                  <class name="title-1"/>
+                </style>
+              </object>
+            </child>
+
+            <!-- Description -->
+            <child>
+              <object class="GtkLabel">
+                <property name="label" translatable="yes">Resize images for Android, iOS, Web, and Social Media</property>
+                <property name="wrap">True</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
+
+            <!-- Platform Selection -->
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="title" translatable="yes">Select Platform</property>
+                <child>
+                  <object class="AdwComboRow" id="platform_combo">
+                    <property name="title" translatable="yes">Platform</property>
+                    <property name="subtitle" translatable="yes">Choose the target platform</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <!-- Preset Selection -->
+            <child>
+              <object class="AdwPreferencesGroup" id="preset_group">
+                <property name="title" translatable="yes">Select Format Preset</property>
+                <child>
+                  <object class="AdwComboRow" id="preset_combo">
+                    <property name="title" translatable="yes">Format</property>
+                    <property name="subtitle" translatable="yes">Choose which format sizes to generate</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <!-- Custom Size -->
+            <child>
+              <object class="AdwPreferencesGroup" id="custom_size_group">
+                <property name="title" translatable="yes">Custom Size</property>
+                <property name="description" translatable="yes">Enter width and height in pixels</property>
+                <property name="visible">False</property>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Width</property>
+                    <property name="subtitle" translatable="yes">Custom width in pixels</property>
+                    <child>
+                      <object class="GtkEntry" id="custom_width_entry">
+                        <property name="valign">center</property>
+                        <property name="placeholder-text" translatable="yes">e.g., 1920</property>
+                        <property name="input-purpose">number</property>
+                        <property name="max-width-chars">8</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Height</property>
+                    <property name="subtitle" translatable="yes">Custom height in pixels</property>
+                    <child>
+                      <object class="GtkEntry" id="custom_height_entry">
+                        <property name="valign">center</property>
+                        <property name="placeholder-text" translatable="yes">e.g., 1080</property>
+                        <property name="input-purpose">number</property>
+                        <property name="max-width-chars">8</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <!-- Image Selection Area -->
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">12</property>
+                <property name="vexpand">True</property>
+
+                <!-- Selected Images List -->
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="vexpand">True</property>
+                    <property name="min-content-height">200</property>
+                    <property name="child">
+                      <object class="GtkListBox" id="images_list">
+                        <property name="selection-mode">none</property>
+                        <style>
+                          <class name="boxed-list"/>
+                        </style>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+
+                <!-- Action Buttons -->
+                <child>
+                  <object class="GtkBox">
+                    <property name="spacing">12</property>
+                    <property name="halign">center</property>
+
+                    <child>
+                      <object class="GtkButton" id="add_images_btn">
+                        <property name="label" translatable="yes">Add Images</property>
+                        <property name="icon-name">list-add-symbolic</property>
+                        <style>
+                          <class name="pill"/>
+                        </style>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkButton" id="clear_images_btn">
+                        <property name="label" translatable="yes">Clear All</property>
+                        <property name="icon-name">edit-clear-all-symbolic</property>
+                        <style>
+                          <class name="pill"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <!-- Output Options -->
+            <child>
+              <object class="AdwPreferencesGroup">
+                <property name="title" translatable="yes">Output Options</property>
+                <child>
+                  <object class="AdwActionRow">
+                    <property name="title" translatable="yes">Output Format</property>
+                    <property name="subtitle" translatable="yes">PNG (lossless) or JPEG (smaller size)</property>
+                    <child>
+                      <object class="GtkSwitch" id="format_switch">
+                        <property name="valign">center</property>
+                        <property name="active">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="format_label">
+                        <property name="label">PNG</property>
+                        <property name="valign">center</property>
+                        <style>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <!-- Process Button -->
+            <child>
+              <object class="GtkButton" id="process_btn">
+                <property name="label" translatable="yes">Resize Images</property>
+                <property name="halign">center</property>
+                <property name="sensitive">False</property>
+                <style>
+                  <class name="suggested-action"/>
+                  <class name="pill"/>
+                </style>
+              </object>
+            </child>
+
+            <!-- Progress Bar -->
+            <child>
+              <object class="GtkProgressBar" id="progress_bar">
+                <property name="visible">False</property>
+              </object>
+            </child>
+
+            <!-- Status Label -->
+            <child>
+              <object class="GtkLabel" id="status_label">
+                <property name="label"></property>
+                <property name="wrap">True</property>
+                <property name="visible">False</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </property>
+      </object>
+    </property>
+  </template>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_About JAIR</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>

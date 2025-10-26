@@ -1,0 +1,29 @@
+# Metadata adicional para Snapcraft Store
+
+contact: contact@lsb.codes
+issues: https://github.com/leandrosb/jair/issues
+source-code: https://github.com/leandrosb/jair
+website: https://lsb.codes
+
+# Screenshots (añadir después de tomar capturas de pantalla)
+# media:
+#   - type: screenshot
+#     url: https://example.com/screenshot1.png
+#   - type: screenshot
+#     url: https://example.com/screenshot2.png
+#   - type: icon
+#     url: https://example.com/icon.png
+
+# Licencia
+license: MIT
+
+# Categorías para la tienda
+categories:
+  - graphics
+  - photography
+  - utility
+
+# Idiomas soportados
+locales:
+  - en
+  - es

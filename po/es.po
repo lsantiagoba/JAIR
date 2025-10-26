@@ -1,0 +1,163 @@
+# Spanish translations for jair package.
+# Copyright (C) 2025 THE jair'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the jair package.
+# Automatically generated, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: jair\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-26 12:00+0000\n"
+"PO-Revision-Date: 2025-01-26 12:00+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Application title
+msgid "JAIR - Image resizer"
+msgstr "JAIR - Redimensionador de imágenes"
+
+# Main interface
+msgid "Image Resizer"
+msgstr "Redimensionador de Imágenes"
+
+msgid "Resize images for Android, iOS, Web, and Social Media"
+msgstr "Redimensiona imágenes para Android, iOS, Web y Redes Sociales"
+
+msgid "Select Platform"
+msgstr "Seleccionar Plataforma"
+
+msgid "Platform"
+msgstr "Plataforma"
+
+msgid "Choose the target platform"
+msgstr "Elige la plataforma objetivo"
+
+msgid "Select Format Preset"
+msgstr "Seleccionar Formato Predefinido"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "Choose which format sizes to generate"
+msgstr "Elige qué tamaños de formato generar"
+
+msgid "Custom Size"
+msgstr "Tamaño Personalizado"
+
+msgid "Enter width and height in pixels"
+msgstr "Ingresa ancho y alto en píxeles"
+
+msgid "Width"
+msgstr "Ancho"
+
+msgid "Custom width in pixels"
+msgstr "Ancho personalizado en píxeles"
+
+msgid "e.g., 1920"
+msgstr "ej., 1920"
+
+msgid "Height"
+msgstr "Alto"
+
+msgid "Custom height in pixels"
+msgstr "Alto personalizado en píxeles"
+
+msgid "e.g., 1080"
+msgstr "ej., 1080"
+
+msgid "Add Images"
+msgstr "Agregar Imágenes"
+
+msgid "Clear All"
+msgstr "Limpiar Todo"
+
+msgid "Output Options"
+msgstr "Opciones de Salida"
+
+msgid "Output Format"
+msgstr "Formato de Salida"
+
+msgid "PNG (lossless) or JPEG (smaller size)"
+msgstr "PNG (sin pérdida) o JPEG (tamaño menor)"
+
+msgid "Resize Images"
+msgstr "Redimensionar Imágenes"
+
+# Menu items
+msgid "_Preferences"
+msgstr "_Preferencias"
+
+msgid "_Keyboard Shortcuts"
+msgstr "_Atajos de Teclado"
+
+msgid "_About JAIR"
+msgstr "_Acerca de JAIR"
+
+msgid "Menu"
+msgstr "Menú"
+
+# Preferences window
+msgid "Preferences"
+msgstr "Preferencias"
+
+msgid "General"
+msgstr "General"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Choose the interface language"
+msgstr "Elige el idioma de la interfaz"
+
+msgid "Interface Language"
+msgstr "Idioma de la Interfaz"
+
+msgid "Select the language for the user interface"
+msgstr "Selecciona el idioma para la interfaz de usuario"
+
+msgid "System Default"
+msgstr "Predeterminado del Sistema"
+
+msgid "Language will change after restarting the application"
+msgstr "El idioma cambiará después de reiniciar la aplicación"
+
+# Platform options
+msgid "Android"
+msgstr "Android"
+
+msgid "iOS / Apple"
+msgstr "iOS / Apple"
+
+msgid "Web & Social Media"
+msgstr "Web y Redes Sociales"
+
+msgid "Custom"
+msgstr "Personalizado"
+
+# Format options
+msgid "PNG"
+msgstr "PNG"
+
+msgid "JPEG"
+msgstr "JPEG"
+
+# Desktop file
+msgid "JAIR"
+msgstr "JAIR"
+
+# Metainfo file  
+msgid "Image Resizer for Multiple Platforms"
+msgstr "Redimensionador de Imágenes para Múltiples Plataformas"
+
+msgid ""
+"A powerful image resizer for Android, iOS, Web, and Social Media. Resize "
+"images with smart presets or custom dimensions in just a few clicks."
+msgstr ""
+"Un potente redimensionador de imágenes para Android, iOS, Web y Redes "
+"Sociales. Redimensiona imágenes con preajustes inteligentes o dimensiones "
+"personalizadas en solo unos clics."

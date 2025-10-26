@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+	<id>codes.lsb.jair.desktop</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>MIT</project_license>
+	<_name>JAIR</_name>
+	<_summary>Image Resizer for Multiple Platforms</_summary>
+	<description>
+	  <_p>A powerful image resizer for Android, iOS, Web, and Social Media. Resize images with smart presets or custom dimensions in just a few clicks.</_p>
+	</description>
+	<screenshots>
+		<screenshot type="default">
+			<caption>Main window</caption>
+			<image>https://via.placeholder.com/800x600</image>
+		</screenshot>
+	</screenshots>
+	<url type="homepage">https://github.com/leandrosantos/jair</url>
+	<url type="bugtracker">https://github.com/leandrosantos/jair/issues</url>
+	<developer_name>Leandro Santiago</developer_name>
+	<update_contact>contact@lsb.codes</update_contact>
+	<releases>
+		<release version="1.0.0" date="2025-01-26"/>
+	</releases>
+</component>

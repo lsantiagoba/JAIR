@@ -1,0 +1,9 @@
+../data/codes.lsb.jair.desktop.in
+../data/codes.lsb.jair.metainfo.xml.in
+../data/codes.lsb.jair.gschema.xml
+../src/window.ui
+../src/preferences.ui
+../src/application.rs
+../src/preferences.rs
+../src/window.rs
+src/window.ui

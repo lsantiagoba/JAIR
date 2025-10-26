@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=JAIR
+GenericName=Image Resizer
+Comment=Resize images for Android, iOS, Web, and Social Media
+Exec=jair
+Icon=codes.lsb.jair
+Terminal=false
+Categories=GTK;Graphics;Photography;
+StartupNotify=true
+_Name=JAIR
+_GenericName=Image Resizer
+_Comment=Resize images for Android, iOS, Web, and Social Media

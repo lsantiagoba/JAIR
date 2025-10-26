@@ -1,0 +1,126 @@
+# English translation for jair
+# Copyright (C) 2025 Leandro Santiago
+# This file is distributed under the same license as the jair package.
+# Leandro Santiago <contact@lsb.codes>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: jair\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-26 12:00+0000\n"
+"PO-Revision-Date: 2025-01-26 12:00+0000\n"
+"Last-Translator: Leandro Santiago <contact@lsb.codes>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# Application title
+msgid "JAIR - Image resizer"
+msgstr ""
+
+# Main interface
+msgid "Image Resizer"
+msgstr ""
+
+msgid "Resize images for Android, iOS, Web, and Social Media"
+msgstr ""
+
+msgid "Select Platform"
+msgstr ""
+
+msgid "Platform"
+msgstr ""
+
+msgid "Choose the target platform"
+msgstr ""
+
+msgid "Select Format Preset"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Choose which format sizes to generate"
+msgstr ""
+
+msgid "Custom Size"
+msgstr ""
+
+msgid "Enter width and height in pixels"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Custom width in pixels"
+msgstr ""
+
+msgid "e.g., 1920"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Custom height in pixels"
+msgstr ""
+
+msgid "e.g., 1080"
+msgstr ""
+
+msgid "Add Images"
+msgstr ""
+
+msgid "Clear All"
+msgstr ""
+
+msgid "Output Options"
+msgstr ""
+
+msgid "Output Format"
+msgstr ""
+
+msgid "PNG (lossless) or JPEG (smaller size)"
+msgstr ""
+
+msgid "Resize Images"
+msgstr ""
+
+# Menu items
+msgid "_Preferences"
+msgstr ""
+
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
+msgid "_About JAIR"
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+# Preferences window
+msgid "Preferences"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Choose the interface language"
+msgstr ""
+
+msgid "Interface Language"
+msgstr ""
+
+msgid "Select the language for the user interface"
+msgstr ""
+
+msgid "System Default"
+msgstr ""
+
+msgid "Language will change after restarting the application"
+msgstr ""

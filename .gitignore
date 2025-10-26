@@ -1,0 +1,74 @@
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Build directories
+builddir/
+build/
+_build/
+.flatpak-builder/
+
+# Snap
+*.snap
+parts/
+stage/
+prime/
+snap/.snapcraft/
+
+# Flatpak
+.flatpak/
+repo/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Compiled translations
+*.mo
+po/*.gmo
+
+# GTK/GNOME
+*.gresource
+
+# Meson
+meson-private/
+meson-logs/
+
+# Compiled sources
+src/config.rs
+
+# Cache
+.cache/
+__pycache__/
+
+# Test outputs
+test-results/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+
+# OS files
+Thumbs.db
+.directory
+
+# Cargo home (when building with snapcraft)
+cargo-home/
+
+# Development databases
+*.db
+*.sqlite
+
+# Environment
+.env
+.env.local

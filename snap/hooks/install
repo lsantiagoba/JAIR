@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+# Compilar schemas de GSettings
+if [ -d "$SNAP/share/glib-2.0/schemas" ]; then
+    glib-compile-schemas "$SNAP/share/glib-2.0/schemas"
+fi
+
+# Actualizar base de datos de aplicaciones
+if [ -d "$SNAP/share/applications" ]; then
+    update-desktop-database "$SNAP/share/applications" 2>/dev/null || true
+fi
