@@ -1,10 +1,10 @@
 name: jair
 base: core24
 version: '1.0.0'
-title: JAIR - Just Another Image Resizer
+title: JAIR - Image Resizer
 summary: Image Resizer for Android, iOS, Web, and Social Media
 description: |
-  JAIR (Just Another Image Resizer) is a powerful and intuitive GTK4/Libadwaita
+  JAIR is a powerful and intuitive GTK4/Libadwaita
   application for resizing images. Perfect for developers and designers who need
   to quickly resize images for multiple platforms.
 
@@ -17,7 +17,7 @@ description: |
   * Multi-language support (English and Spanish)
 
 license: MIT
-contact: https://github.com/lsantiagoba/jair
+contact: https://lsb.codes/contact
 icon: snap/gui/icon.svg
 
 grade: stable
@@ -40,15 +40,10 @@ apps:
       - opengl
       - gsettings
       - removable-media
-      - mount-observe
     common-id: codes.lsb.jair
     desktop: usr/share/applications/codes.lsb.jair.desktop
     environment:
       GSETTINGS_SCHEMA_DIR: $SNAP/share/glib-2.0/schemas
-      XDG_DATA_DIRS: $SNAP/usr/share:$XDG_DATA_DIRS
-      LOCPATH: $SNAP/usr/lib/locale
-      LC_ALL: C.UTF-8
-      LANG: C.UTF-8
 
 slots:
   jair-dbus:
@@ -71,7 +66,6 @@ parts:
       - libjpeg-turbo8
       - libpng16-16
       - libwebp7
-      - locales
     override-build: |
       # Get the name of the .deb file
       ARCH=$(dpkg --print-architecture)
@@ -103,17 +97,6 @@ parts:
       if [ -d usr/share/icons/hicolor ]; then
         gtk-update-icon-cache -f -t usr/share/icons/hicolor 2>/dev/null || true
       fi
-
-      # Generate locales
-      if [ -x usr/sbin/locale-gen ]; then
-        echo "en_US.UTF-8 UTF-8" > etc/locale.gen
-        echo "es_ES.UTF-8 UTF-8" >> etc/locale.gen
-        usr/sbin/locale-gen --no-archive || true
-      fi
-
-layout:
-  /usr/share/jair:
-    bind: $SNAP/usr/share/jair
 
 plugs:
   gnome-46-2404:
