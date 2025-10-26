@@ -19,6 +19,10 @@ description: |
 license: MIT
 contact: https://lsb.codes/contact
 icon: snap/gui/icon.svg
+donation: https://www.paypal.com/paypalme/leandrosb3
+issues: https://github.com/lsantiagoba/JAIR/issues
+source-code: https://github.com/lsantiagoba/JAIR
+website: https://github.com/lsantiagoba/JAIR
 
 grade: stable
 confinement: strict
