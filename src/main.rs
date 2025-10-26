@@ -56,13 +56,20 @@ fn main() -> glib::ExitCode {
 
     // Set up gettext translations
     // Try to bind to multiple possible locale directories for development and installed builds
-    let locale_dirs = [
-        LOCALEDIR,
-        "/usr/share/locale",
-        "/usr/local/share/locale",
-        "./po",
-        "../po",
-    ];
+    let mut locale_dirs = vec![];
+
+    // Check if we're in a snap environment
+    if let Ok(snap_dir) = std::env::var("SNAP") {
+        locale_dirs.push(format!("{}/usr/share/locale", snap_dir));
+    }
+
+    locale_dirs.extend([
+        LOCALEDIR.to_string(),
+        "/usr/share/locale".to_string(),
+        "/usr/local/share/locale".to_string(),
+        "./po".to_string(),
+        "../po".to_string(),
+    ]);
 
     let mut locale_bound = false;
     for dir in &locale_dirs {
@@ -86,11 +93,18 @@ fn main() -> glib::ExitCode {
     textdomain(GETTEXT_PACKAGE).expect("Failed to set text domain");
 
     // Load resources - try from multiple locations for development/installed builds
-    let resource_paths = [
+    // First check if JAIR_DATA_DIR environment variable is set (snap environment)
+    let mut resource_paths = vec![];
+
+    if let Ok(data_dir) = std::env::var("JAIR_DATA_DIR") {
+        resource_paths.push(format!("{}/jair.gresource", data_dir));
+    }
+
+    resource_paths.extend([
         PKGDATADIR.to_owned() + "/jair.gresource",
         "data/jair.gresource".to_string(),
         "./data/jair.gresource".to_string(),
-    ];
+    ]);
 
     let mut resources_loaded = false;
     for path in &resource_paths {
