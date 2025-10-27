@@ -44,6 +44,7 @@ apps:
       - opengl
       - gsettings
       - removable-media
+      - mount-observe
     common-id: codes.lsb.jair
     desktop: usr/share/applications/codes.lsb.jair.desktop
     environment:
@@ -51,6 +52,10 @@ apps:
       XDG_DATA_DIRS: $SNAP/usr/share:$SNAP/share:/usr/share:/usr/local/share:$XDG_DATA_DIRS
       # Override the hardcoded path to point to snap location
       JAIR_DATA_DIR: $SNAP/usr/share/jair
+      # Preserve system locale for translations
+      LOCPATH: $SNAP/usr/lib/locale
+      # Don't override user's language preference
+      # LANG and LANGUAGE will be inherited from the system
 
 slots:
   jair-dbus:

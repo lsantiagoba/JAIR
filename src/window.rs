@@ -27,6 +27,7 @@ use gtk::prelude::*;
 use adw::subclass::prelude::*;
 use adw::prelude::*;
 use gtk::{gio, glib};
+use glib::prelude::*;
 use gettextrs::gettext;
 use std::path::PathBuf;
 
@@ -103,7 +104,7 @@ glib::wrapper! {
 }
 
 impl JairWindow {
-    pub fn new<P: glib::IsA<gtk::Application>>(application: &P) -> Self {
+    pub fn new<P: IsA<gtk::Application>>(application: &P) -> Self {
         let window: Self = glib::Object::builder()
             .property("application", application)
             .build();
@@ -213,15 +214,7 @@ impl JairWindow {
     }
 
     fn on_add_images_clicked(&self) {
-        let dialog = gtk::FileChooserNative::new(
-            Some("Select Images"),
-            Some(self),
-            gtk::FileChooserAction::Open,
-            Some("Select"),
-            Some("Cancel"),
-        );
-
-        dialog.set_select_multiple(true);
+        eprintln!("DEBUG: on_add_images_clicked called");
 
         // Create file filter for images
         let filter = gtk::FileFilter::new();
@@ -234,16 +227,38 @@ impl JairWindow {
         filter.add_pattern("*.bmp");
         filter.add_pattern("*.webp");
 
-        dialog.add_filter(&filter);
+        // Create a filter list
+        let filters = gio::ListStore::new::<gtk::FileFilter>();
+        filters.append(&filter);
 
-        dialog.connect_response(glib::clone!(@weak self as window => move |dialog, response| {
-            if response == gtk::ResponseType::Accept {
-                let files = dialog.files();
-                window.add_images_from_files(&files);
-            }
-        }));
+        // Use modern FileDialog API (GTK 4.10+)
+        let dialog = gtk::FileDialog::builder()
+            .title("Select Images")
+            .modal(true)
+            .filters(&filters)
+            .build();
 
-        dialog.show();
+        eprintln!("DEBUG: FileDialog created");
+
+        // Open multiple files asynchronously
+        dialog.open_multiple(
+            Some(self),
+            gio::Cancellable::NONE,
+            glib::clone!(@weak self as window => move |result| {
+                eprintln!("DEBUG: Dialog response received");
+                match result {
+                    Ok(files) => {
+                        eprintln!("DEBUG: Files selected successfully, count: {}", files.n_items());
+                        window.add_images_from_files(&files);
+                    }
+                    Err(e) => {
+                        eprintln!("DEBUG: Dialog cancelled or error: {}", e);
+                    }
+                }
+            }),
+        );
+
+        eprintln!("DEBUG: Dialog.open_multiple() called");
     }
 
     fn add_images_from_files(&self, files: &gio::ListModel) {
@@ -388,26 +403,28 @@ impl JairWindow {
             return;
         }
 
-        // Show file chooser for output directory
-        let dialog = gtk::FileChooserNative::new(
-            Some("Select Output Directory"),
-            Some(self),
-            gtk::FileChooserAction::SelectFolder,
-            Some("Select"),
-            Some("Cancel"),
-        );
+        // Show file chooser for output directory using modern FileDialog API
+        let dialog = gtk::FileDialog::builder()
+            .title("Select Output Directory")
+            .modal(true)
+            .build();
 
-        dialog.connect_response(glib::clone!(@weak self as window => move |dialog, response| {
-            if response == gtk::ResponseType::Accept {
-                if let Some(file) = dialog.file() {
-                    if let Some(out_dir) = file.path() {
-                        window.process_images(images.clone(), out_dir, sizes.clone(), use_png);
+        dialog.select_folder(
+            Some(self),
+            gio::Cancellable::NONE,
+            glib::clone!(@weak self as window => move |result| {
+                match result {
+                    Ok(file) => {
+                        if let Some(out_dir) = file.path() {
+                            window.process_images(images.clone(), out_dir, sizes.clone(), use_png);
+                        }
+                    }
+                    Err(e) => {
+                        eprintln!("Folder selection cancelled or error: {}", e);
                     }
                 }
-            }
-        }));
-
-        dialog.show();
+            }),
+        );
     }
 
     fn process_images(

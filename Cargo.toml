@@ -5,7 +5,7 @@ edition = "2021"
 
 [dependencies]
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
-gtk = { version = "0.7", package = "gtk4" }
+gtk = { version = "0.9", package = "gtk4", features = ["v4_10"] }
 image = "0.24"
 rayon ="1.7"
 anyhow ="1.0"
@@ -13,5 +13,5 @@ async-channel = "2.0"
 
 [dependencies.adw]
 package = "libadwaita"
-version = "0.5"
+version = "0.7"
 features = ["v1_4"]
