@@ -18,7 +18,7 @@ echo ""
 
 # Variables
 APP_NAME="jair"
-APP_VERSION="1.0.0"
+APP_VERSION="1.0.1"
 ARCH=$(dpkg --print-architecture)
 FLATPAK_STAGING="$HOME/.cache/gnome-builder/projects/JAIR/flatpak/staging/x86_64-main/files"
 DEB_DIR="debian_package"

@@ -4,7 +4,7 @@
 
 ### From local file
 ```bash
-sudo snap install jair_1.0.0_amd64.snap --dangerous
+sudo snap install jair_1.0.1_amd64.snap --dangerous
 ```
 
 ### From Snapcraft Store (when published)
@@ -24,7 +24,7 @@ sudo snap install snapcraft --classic
 snapcraft
 ```
 
-This will create the `jair_1.0.0_amd64.snap` file.
+This will create the `jair_1.0.1_amd64.snap` file.
 
 ## Permissions
 
@@ -79,7 +79,7 @@ snapcraft register jair
 
 4. Upload the snap:
 ```bash
-snapcraft upload jair_1.0.0_amd64.snap --release=edge
+snapcraft upload jair_1.0.1_amd64.snap --release=edge
 ```
 
 5. Promote to stable channel:

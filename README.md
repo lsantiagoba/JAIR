@@ -135,7 +135,7 @@ meson compile -C builddir
 ### Option 1: Install from Snap
 
 ```bash
-sudo snap install jair_1.0.0_amd64.snap --dangerous
+sudo snap install jair_1.0.1_amd64.snap --dangerous
 ```
 
 After installation, you need to connect the `mount-observe` permission to allow JAIR to access your file system when selecting images:
@@ -154,7 +154,7 @@ jair
 ### Option 2: Install from DEB Package
 
 ```bash
-sudo dpkg -i jair_1.0.0_amd64.deb
+sudo dpkg -i jair_1.0.1_amd64.deb
 ```
 
 ### Option 3: Install from Source

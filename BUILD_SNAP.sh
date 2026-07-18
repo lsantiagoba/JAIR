@@ -9,7 +9,7 @@ echo ""
 
 # Variables
 APP_NAME="jair"
-APP_VERSION="1.0.0"
+APP_VERSION="1.0.1"
 ARCH=$(dpkg --print-architecture)
 DEB_FILE="${APP_NAME}_${APP_VERSION}_${ARCH}.deb"
 

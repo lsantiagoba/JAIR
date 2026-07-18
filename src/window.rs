@@ -371,25 +371,16 @@ impl JairWindow {
         let custom_width_text = imp.custom_width_entry.text();
         let custom_height_text = imp.custom_height_entry.text();
 
-        if !custom_width_text.is_empty() && !custom_height_text.is_empty() {
-            if let (Ok(width), Ok(height)) = (
-                custom_width_text.parse::<u32>(),
-                custom_height_text.parse::<u32>()
-            ) {
-                if width > 0 && height > 0 {
-                    sizes.push(crate::models::Size {
-                        width,
-                        height,
-                        name: format!("Custom_{}x{}", width, height),
-                    });
-                }
-            }
+        if let Some(size) = parse_custom_size(&custom_width_text, &custom_height_text) {
+            sizes.push(size);
         }
 
         // If Custom platform is selected and no valid custom size, show error
         if platform_idx == 3 && sizes.is_empty() {
             imp.status_label.set_visible(true);
-            imp.status_label.set_text("Please enter valid width and height values");
+            imp.status_label.set_text(&gettext(
+                "Please enter a valid width, height, or both",
+            ));
             return;
         }
 
@@ -491,5 +482,59 @@ impl JairWindow {
                 }
             }
         }));
+    }
+}
+
+/// A zero dimension is resolved from the source image's aspect ratio by the processor.
+fn parse_custom_size(width_text: &str, height_text: &str) -> Option<crate::models::Size> {
+    let parse_dimension = |text: &str| {
+        if text.trim().is_empty() {
+            Some(0)
+        } else {
+            text.trim().parse::<u32>().ok().filter(|value| *value > 0)
+        }
+    };
+
+    let width = parse_dimension(width_text)?;
+    let height = parse_dimension(height_text)?;
+
+    if width == 0 && height == 0 {
+        return None;
+    }
+
+    let name = match (width, height) {
+        (width, 0) => format!("Custom_{}w", width),
+        (0, height) => format!("Custom_{}h", height),
+        (width, height) => format!("Custom_{}x{}", width, height),
+    };
+
+    Some(crate::models::Size {
+        width,
+        height,
+        name,
+    })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::parse_custom_size;
+
+    #[test]
+    fn accepts_either_or_both_custom_dimensions() {
+        let width_only = parse_custom_size("1920", "").unwrap();
+        assert_eq!((width_only.width, width_only.height), (1920, 0));
+
+        let height_only = parse_custom_size("", "1080").unwrap();
+        assert_eq!((height_only.width, height_only.height), (0, 1080));
+
+        let both = parse_custom_size("1920", "1080").unwrap();
+        assert_eq!((both.width, both.height), (1920, 1080));
+    }
+
+    #[test]
+    fn rejects_empty_zero_or_invalid_dimensions() {
+        assert!(parse_custom_size("", "").is_none());
+        assert!(parse_custom_size("0", "1080").is_none());
+        assert!(parse_custom_size("wide", "1080").is_none());
     }
 }

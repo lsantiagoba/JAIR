@@ -21,7 +21,11 @@
           </object>
         </child>
         <property name="content">
-          <object class="GtkBox">
+          <object class="GtkScrolledWindow">
+            <property name="hscrollbar-policy">never</property>
+            <property name="vscrollbar-policy">automatic</property>
+            <property name="child">
+              <object class="GtkBox">
             <property name="orientation">vertical</property>
             <property name="spacing">12</property>
             <property name="margin-top">24</property>
@@ -81,7 +85,7 @@
             <child>
               <object class="AdwPreferencesGroup" id="custom_size_group">
                 <property name="title" translatable="yes">Custom Size</property>
-                <property name="description" translatable="yes">Enter width and height in pixels</property>
+                <property name="description" translatable="yes">Enter a width, a height, or both in pixels. A missing dimension keeps the original aspect ratio.</property>
                 <property name="visible">False</property>
                 <child>
                   <object class="AdwActionRow">
@@ -226,6 +230,8 @@
                 </style>
               </object>
             </child>
+              </object>
+            </property>
           </object>
         </property>
       </object>

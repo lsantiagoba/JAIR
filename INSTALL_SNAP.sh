@@ -21,7 +21,7 @@ sudo snap remove jair 2>/dev/null || true
 
 # Install the new snap
 echo -e "${BLUE}📦 Installing new snap...${NC}"
-sudo snap install --dangerous jair_1.0.0_amd64.snap
+sudo snap install --dangerous jair_1.0.1_amd64.snap
 
 # Connect necessary interfaces
 echo -e "${BLUE}🔌 Connecting interfaces...${NC}"

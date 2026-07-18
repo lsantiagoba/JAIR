@@ -1,8 +1,8 @@
+use anyhow::{Context, Result};
 use crate::models::Size;
-use std::path::{Path, PathBuf};
-use anyhow::{Result, Context};
-use image::imageops::FilterType;
+use image::{imageops::FilterType, GenericImageView};
 use rayon::prelude::*;
+use std::path::{Path, PathBuf};
 
 pub fn resize_and_save(
     input: &Path,
@@ -10,15 +10,14 @@ pub fn resize_and_save(
     sizes: &[Size],
     output_format_png: bool,
 ) -> Result<Vec<PathBuf>> {
-
     let img = image::open(input)
         .with_context(|| format!("No se pudo abrir la imagen: {}", input.display()))?;
 
     let mut saved = Vec::new();
 
     for s in sizes {
-
-        let resized = img.resize(s.width, s.height, FilterType::Lanczos3);
+        let (width, height) = resolved_dimensions(img.dimensions(), s);
+        let resized = img.resize(width, height, FilterType::Lanczos3);
 
         let folder = out_dir.join(&s.name);
         std::fs::create_dir_all(&folder)
@@ -39,7 +38,6 @@ pub fn resize_and_save(
                 .save_with_format(&out_path, image::ImageFormat::Png)
                 .with_context(|| format!("Error guardando {}", out_path.display()))?;
         } else {
-
             let mut fout = std::fs::File::create(&out_path)?;
             let quality = 90u8;
             resized.write_to(&mut std::io::BufWriter::new(&mut fout), image::ImageOutputFormat::Jpeg(quality))
@@ -50,6 +48,53 @@ pub fn resize_and_save(
     }
 
     Ok(saved)
+}
+
+fn resolved_dimensions((original_width, original_height): (u32, u32), size: &Size) -> (u32, u32) {
+    match (size.width, size.height) {
+        (width, 0) => {
+            let height = (u64::from(width) * u64::from(original_height)
+                / u64::from(original_width))
+                .max(1) as u32;
+            (width, height)
+        }
+        (0, height) => {
+            let width = (u64::from(height) * u64::from(original_width)
+                / u64::from(original_height))
+                .max(1) as u32;
+            (width, height)
+        }
+        (width, height) => (width, height),
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::resolved_dimensions;
+    use crate::models::Size;
+
+    #[test]
+    fn calculates_missing_dimension_from_aspect_ratio() {
+        let width_only = Size {
+            width: 1000,
+            height: 0,
+            name: String::new(),
+        };
+        assert_eq!(
+            resolved_dimensions((4000, 3000), &width_only),
+            (1000, 750)
+        );
+
+        let height_only = Size {
+            width: 0,
+            height: 600,
+            name: String::new(),
+        };
+        assert_eq!(
+            resolved_dimensions((4000, 3000), &height_only),
+            (800, 600)
+        );
+    }
 }
 
 /// Process multiple images in batch

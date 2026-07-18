@@ -18,7 +18,7 @@ echo ""
 
 # Variables
 APP_NAME="jair"
-APP_VERSION="1.0.0"
+APP_VERSION="1.0.1"
 ARCH=$(dpkg --print-architecture)
 BUILD_DIR="build"
 DEB_DIR="debian_package"

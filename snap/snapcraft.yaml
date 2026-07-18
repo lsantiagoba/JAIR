@@ -1,6 +1,6 @@
 name: jair
 base: core24
-version: '1.0.0'
+version: '1.0.1'
 title: JAIR - Image Resizer
 summary: Image Resizer for Android, iOS, Web, and Social Media
 description: |
@@ -81,7 +81,7 @@ parts:
     override-build: |
       # Get the name of the .deb file
       ARCH=$(dpkg --print-architecture)
-      DEB_FILE="${CRAFT_PROJECT_DIR}/jair_1.0.0_${ARCH}.deb"
+      DEB_FILE="${CRAFT_PROJECT_DIR}/jair_1.0.1_${ARCH}.deb"
 
       # Verify that the .deb file exists
       if [ ! -f "$DEB_FILE" ]; then
